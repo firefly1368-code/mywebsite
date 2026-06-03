@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Muhammad Riski Akbar — Ethical Hacker, Cyber Security Student, Tool Builder"/>
+<title>firefly.dev | Riski Akbar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════ BOOT SCREEN ═══════════════ -->
+<div id="bootScreen">
+  <div class="boot-wrap">
+    <div class="boot-top">
+      <span class="boot-os">✦ FIREFLY.DEV OS v1.3.6.8 ✦</span>
+      <span class="boot-bios">TJKT — Cyber Security Unit</span>
+    </div>
+    <div class="boot-log" id="bootLog"></div>
+    <div class="boot-bar-wrap">
+      <div class="boot-bar-labels">
+        <span id="bootStatus">Initializing...</span>
+        <span id="bootPct">0%</span>
+      </div>
+      <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+    </div>
+    <div class="boot-enter" id="bootEnter">
+      <button class="enter-btn" onclick="enterSystem()">
+        <span class="eb-bracket">[</span>
+        <span class="eb-text">ENTER SYSTEM</span>
+        <span class="eb-bracket">]</span>
+        <span class="eb-cur">▮</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN YT PLAYER -->
+<div id="yt-player" style="position:fixed;width:1px;height:1px;top:0;left:0;opacity:0.01;pointer-events:none;z-index:-99;"></div>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="goPage(0)">
+    <span class="neon">&lt;</span>firefly.dev<span class="neon">/&gt;</span>
+  </div>
+  <div class="nav-links">
+    <a class="nl active" onclick="goPage(0)" data-pg="0"><i class="fas fa-terminal"></i> Home</a>
+    <a class="nl" onclick="goPage(1)" data-pg="1"><i class="fas fa-user-shield"></i> About</a>
+    <a class="nl" onclick="goPage(2)" data-pg="2"><i class="fas fa-code-branch"></i> Works</a>
+    <a class="nl" onclick="goPage(3)" data-pg="3"><i class="fas fa-satellite-dish"></i> Contact</a>
+  </div>
+  <div class="nav-status">
+    <span class="ns-dot"></span><span class="ns-txt">ONLINE</span>
+  </div>
+  <button class="nav-burger" id="navBurger" onclick="toggleMobileNav()">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a onclick="goPage(0);toggleMobileNav()"><i class="fas fa-terminal"></i> Home</a>
+  <a onclick="goPage(1);toggleMobileNav()"><i class="fas fa-user-shield"></i> About</a>
+  <a onclick="goPage(2);toggleMobileNav()"><i class="fas fa-code-branch"></i> Works</a>
+  <a onclick="goPage(3);toggleMobileNav()"><i class="fas fa-satellite-dish"></i> Contact</a>
+</div>
+
+<!-- Page Dots -->
+<div class="page-dots" id="pageDots">
+  <button class="pd active" onclick="goPage(0)" title="Home"></button>
+  <button class="pd" onclick="goPage(1)" title="About"></button>
+  <button class="pd" onclick="goPage(2)" title="Works"></button>
+  <button class="pd" onclick="goPage(3)" title="Contact"></button>
+</div>
+
+<!-- ═══════════════ MUSIC PLAYER ═══════════════ -->
+<div class="music-player" id="musicPlayer" style="display:none;">
+  <div class="mp-inner">
+    <div class="mp-viz" id="mpViz">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="mp-info">
+      <div class="mp-title" id="mpTitle">Loading...</div>
+      <div class="mp-sub" id="mpSub">firefly playlist · <span id="mpNum">1/11</span></div>
+    </div>
+    <div class="mp-ctrl">
+      <button onclick="mpPrev()"><i class="fas fa-backward"></i></button>
+      <button class="mp-play" onclick="mpToggle()"><i class="fas fa-pause" id="mpIcon"></i></button>
+      <button onclick="mpNext()"><i class="fas fa-forward"></i></button>
+    </div>
+    <input type="range" class="mp-vol" min="0" max="100" value="60" oninput="mpVol(this.value)" title="Volume"/>
+    <button class="mp-close" onclick="mpMinimize()"><i class="fas fa-minus"></i></button>
+  </div>
+</div>
+<button class="mp-bubble" id="mpBubble" onclick="mpExpand()" style="display:none;">
+  <i class="fas fa-music"></i>
+  <span class="mp-bub-viz"><span></span><span></span><span></span></span>
+</button>
+
+<!-- ═══════════════ PAGES ═══════════════ -->
+<div class="fp-wrapper" id="fpWrapper">
+
+  <!-- ████ PAGE 0 — HOME ████ -->
+  <div class="fp-page" id="page0">
+    <canvas id="particles"></canvas>
+    <div class="fp-grid-bg"></div>
+    <div class="hero-anime-bg"></div><!-- bg-anime.jpg -->
+
+    <div class="home-content">
+      <div class="home-left">
+        <div class="home-badge">
+          <i class="fas fa-shield-alt"></i> TJKT · CYBER SECURITY STUDENT
+        </div>
+        <h1 class="home-name">
+          <span class="hn-first">RISKI</span>
+          <span class="hn-last">AKBAR</span>
+        </h1>
+        <div class="home-typed">
+          <span class="ht-prefix">$ whoami → </span>
+          <span id="typedText" class="ht-text"></span><span class="ht-cur">|</span>
+        </div>
+        <p class="home-desc">
+          「 研究のためにハックする。守るために学ぶ。好奇心を持ち続けろ。 」<br/>
+          <em style="color:var(--dim);font-size:.85em">"Hack to learn. Learn to protect. Stay curious."</em>
+        </p>
+        <div class="home-stats">
+          <div class="hs"><span class="hs-n">4</span><span class="hs-l">Repos</span></div>
+          <div class="hs"><span class="hs-n">60%</span><span class="hs-l">Linux</span></div>
+          <div class="hs"><span class="hs-n">60%</span><span class="hs-l">Pentest</span></div>
+          <div class="hs"><span class="hs-n">99%</span><span class="hs-l">Otaku Lvl</span></div>
+        </div>
+        <div class="home-btns">
+          <button class="hbtn primary" onclick="goPage(2)"><i class="fas fa-code-branch"></i> View Projects</button>
+          <button class="hbtn secondary" onclick="goPage(1)"><i class="fas fa-user"></i> About Me</button>
+          <button class="hbtn ghost" onclick="goPage(3)"><i class="fas fa-satellite-dish"></i> Contact</button>
+        </div>
+      </div>
+      <div class="home-right">
+        <div class="avatar-wrap">
+          <div class="av-ring r1"></div>
+          <div class="av-ring r2"></div>
+          <div class="av-ring r3"></div>
+          <div class="av-frame">
+            <img src="assets/images/avatar.png" alt="Riski Akbar" class="av-img"/>
+            <div class="av-scan"></div>
+            <div class="av-glow"></div>
+          </div>
+          <div class="av-tag t1">ETH-HACKER</div>
+          <div class="av-tag t2">SEC-OPS</div>
+          <div class="av-tag t3">OTAKU✦</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-scroll-hint">
+      <span>SCROLL DOWN</span>
+      <div class="scroll-line"></div>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <!-- ████ PAGE 1 — ABOUT & SKILLS ████ -->
+  <div class="fp-page" id="page1">
+    <div class="fp-grid-bg"></div>
+    <!-- Gambar 2: anime collage pink hair -->
+    <div class="page-bg-img" style="background-image:url('assets/images/bg-page1-about.png')"></div>
+
+    <div class="page-content">
+      <div class="page-cols">
+        <!-- LEFT: About -->
+        <div class="col-half reveal-left">
+          <div class="sec-tag">// 01 ABOUT ME — 自己紹介</div>
+          <h2 class="sec-title">WHO AM <span class="neon">I</span></h2>
+          <div class="about-card">
+            <div class="about-avatar-row">
+              <img src="assets/images/avatar.png" alt="Riski" class="ab-avatar"/>
+              <div>
+                <div class="ab-name">Muhammad Riski Akbar</div>
+                <div class="ab-role">firefly1368-code 🦋</div>
+                <div class="ab-loc"><i class="fas fa-map-marker-alt"></i> Indonesia · TJKT</div>
+              </div>
+            </div>
+            <p class="ab-bio">
+              Cyber Security student dari TJKT yang obsessed dengan ethical hacking, tool building, dan segala sesuatu yang berbau Linux.
+              Kalau lagi nggak hacking, pasti lagi baca manga atau nonton anime sampai lupa waktu.
+              <br/><br/>
+              <em style="color:var(--neon);font-size:.85em">"An otaku who hacks, or a hacker who watches anime? Yes, that's me."</em> 🌸
+            </p>
+            <div class="ab-focus">
+              <span>Penetration Testing</span>
+              <span>SOC Skills</span>
+              <span>CTF Player</span>
+              <span>Tool Builder</span>
+              <span>Linux 🐧</span>
+              <span>Anime 🌸</span>
+            </div>
+            <div class="ab-links">
+              <a href="https://github.com/firefly1368-code" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/riski-akbar-a7b20a363" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/saotome_risu/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="mailto:firefly1368@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Skills -->
+        <div class="col-half reveal-right">
+          <div class="sec-tag">// 02 SKILLS — スキル</div>
+          <h2 class="sec-title">TECH <span class="neon">ARSENAL</span></h2>
+          <div class="skills-list">
+            <div class="sk-group">
+              <div class="sk-label"><i class="fas fa-bug"></i> Cyber Security</div>
+              <div class="sk-bars">
+                <div class="skb"><span>Penetration Testing</span><div class="skb-track"><div class="skb-fill" style="--p:60%;--c:#ff6b35"></div></div><span class="skb-n" style="color:#ff6b35">60%</span></div>
+                <div class="skb"><span>CTF / OSINT</span><div class="skb-track"><div class="skb-fill" style="--p:65%;--c:#ff6b35"></div></div><span class="skb-n" style="color:#ff6b35">65%</span></div>
+                <div class="skb"><span>SOC / Monitoring</span><div class="skb-track"><div class="skb-fill" style="--p:55%;--c:#7b2fff"></div></div><span class="skb-n" style="color:#7b2fff">55%</span></div>
+              </div>
+            </div>
+            <div class="sk-group">
+              <div class="sk-label"><i class="fas fa-linux"></i> System & Infra</div>
+              <div class="sk-bars">
+                <div class="skb"><span>Linux</span><div class="skb-track"><div class="skb-fill" style="--p:60%"></div></div><span class="skb-n">60%</span></div>
+                <div class="skb"><span>Networking</span><div class="skb-track"><div class="skb-fill" style="--p:40%"></div></div><span class="skb-n">40%</span></div>
+                <div class="skb"><span>Docker</span><div class="skb-track"><div class="skb-fill" style="--p:50%"></div></div><span class="skb-n">50%</span></div>
+              </div>
+            </div>
+            <div class="sk-group">
+              <div class="sk-label"><i class="fas fa-code"></i> Programming</div>
+              <div class="sk-bars">
+                <div class="skb"><span>Python</span><div class="skb-track"><div class="skb-fill" style="--p:20%;--c:#3572a5"></div></div><span class="skb-n" style="color:#3572a5">20%</span></div>
+                <div class="skb"><span>Bash</span><div class="skb-track"><div class="skb-fill" style="--p:30%;--c:#89e051"></div></div><span class="skb-n" style="color:#89e051">30%</span></div>
+                <div class="skb"><span>JavaScript</span><div class="skb-track"><div class="skb-fill" style="--p:25%;--c:#f1e05a"></div></div><span class="skb-n" style="color:#f1e05a">25%</span></div>
+              </div>
+            </div>
+            <div class="sk-group">
+              <div class="sk-label"><i class="fas fa-heart" style="color:#ff6b8a"></i> Otaku Level</div>
+              <div class="sk-bars">
+                <div class="skb"><span>Manga / Manhwa</span><div class="skb-track"><div class="skb-fill" style="--p:99%;--c:#ff6b8a"></div></div><span class="skb-n" style="color:#ff6b8a">99%</span></div>
+                <div class="skb"><span>Anime</span><div class="skb-track"><div class="skb-fill" style="--p:99%;--c:#c77dff"></div></div><span class="skb-n" style="color:#c77dff">99%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ████ PAGE 2 — WORKS & CERTS ████ -->
+  <div class="fp-page" id="page2">
+    <div class="fp-grid-bg"></div>
+    <!-- Gambar 3: anime girl selfie pink hair ribbon -->
+    <div class="page-bg-img" style="background-image:url('assets/images/bg-page2-works.png');background-position:right center;"></div>
+
+    <div class="page-content">
+      <div class="sec-tag" style="text-align:center">// 03 WORKS — プロジェクト</div>
+      <h2 class="sec-title" style="text-align:center;margin-bottom:20px">PROJECTS & <span class="neon">CERTS</span></h2>
+
+      <!-- Tabs -->
+      <div class="works-tabs">
+        <button class="wtab active" onclick="switchTab('projects',this)"><i class="fas fa-code-branch"></i> Projects</button>
+        <button class="wtab" onclick="switchTab('certs',this)"><i class="fas fa-certificate"></i> Certificates</button>
+        <button class="wtab" onclick="switchTab('videos',this)"><i class="fas fa-play-circle"></i> Videos</button>
+      </div>
+
+      <!-- TAB: Projects — dari GitHub real -->
+      <div class="tab-content active" id="tab-projects">
+        <div class="projects-grid">
+
+          <div class="pcard">
+            <div class="pcard-icon" style="--ic:#f46800"><i class="fas fa-chart-line"></i></div>
+            <div class="pcard-body">
+              <div class="pcard-badge" style="color:#f46800;border-color:#f4680044">DEVOPS · ⭐1</div>
+              <div class="pcard-title">TOOLKIT-GRAFANA</div>
+              <div class="pcard-desc">Self-hosted monitoring toolbox dengan web-based setup wizard. Deploy Grafana + Prometheus + Loki + Alertmanager dalam menit tanpa manual config.</div>
+              <div class="pcard-tech"><span>Python</span><span>Grafana</span><span>Prometheus</span><span>Loki</span></div>
+              <div class="pcard-bar"><div style="width:80%;background:linear-gradient(90deg,#f46800,#ffd700)"></div></div>
+              <div class="pcard-links">
+                <a href="https://github.com/firefly1368-code/toolkit-grafana" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard-icon" style="--ic:#ff6b35"><i class="fas fa-shield-virus"></i></div>
+            <div class="pcard-body">
+              <div class="pcard-badge" style="color:#ff6b35;border-color:#ff6b3544">SECURITY</div>
+              <div class="pcard-title">SECUREPIPELINE</div>
+              <div class="pcard-desc">Framework keamanan revolusioner: SAST, DAST, dan auto-remediation dalam satu platform. Deteksi zero-day, Kubernetes security operator, compliance automation.</div>
+              <div class="pcard-tech"><span>Python</span><span>Kubernetes</span><span>SAST</span><span>DAST</span></div>
+              <div class="pcard-bar"><div style="width:70%;background:linear-gradient(90deg,#ff6b35,#7b2fff)"></div></div>
+              <div class="pcard-links">
+                <a href="https://github.com/firefly1368-code/SecurePipeline" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard-icon" style="--ic:#00d4ff"><i class="fas fa-spider"></i></div>
+            <div class="pcard-body">
+              <div class="pcard-badge" style="color:#00d4ff;border-color:#00d4ff44">SECURITY</div>
+              <div class="pcard-title">HONEYPOT</div>
+              <div class="pcard-desc">Project honeypot dengan fitur-fitur yang lengkap — menangkap, merekam, dan menganalisis aktivitas attacker secara real-time.</div>
+              <div class="pcard-tech"><span>Python</span><span>Networking</span><span>Logging</span></div>
+              <div class="pcard-bar"><div style="width:65%;background:linear-gradient(90deg,#00d4ff,#00ff9f)"></div></div>
+              <div class="pcard-links">
+                <a href="https://github.com/firefly1368-code/honeypot" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard-icon" style="--ic:#c77dff"><i class="fas fa-user-astronaut"></i></div>
+            <div class="pcard-body">
+              <div class="pcard-badge" style="color:#c77dff;border-color:#c77dff44">PROFILE</div>
+              <div class="pcard-title">FIREFLY IS MY WIFE 🦋</div>
+              <div class="pcard-desc">Forked perkenalan — profil GitHub dengan README yang ceritain siapa Riski Akbar: ethical hacker, otaku, dan penggemar berat Firefly dari Honkai: Star Rail.</div>
+              <div class="pcard-tech"><span>Markdown</span><span>README</span><span>✦ Firefly</span></div>
+              <div class="pcard-bar"><div style="width:100%;background:linear-gradient(90deg,#c77dff,#ff6b8a)"></div></div>
+              <div class="pcard-links">
+                <a href="https://github.com/firefly1368-code/FIREflyIsMywife26710" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB: Certificates -->
+      <div class="tab-content" id="tab-certs">
+        <div class="certs-info-bar">
+          <i class="fas fa-info-circle"></i>
+          Tambah foto sertifikat: simpan ke <code>assets/images/certs/</code> lalu ganti <code>&lt;div class="cert-placeholder"&gt;</code> dengan <code>&lt;img src="..."&gt;</code>
+        </div>
+        <div class="certs-grid">
+
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb" style="background:linear-gradient(135deg,#0d1b2e,#1a0a2e)">
+              <div class="cert-placeholder">
+                <i class="fas fa-shield-alt"></i>
+                <span>SERTIFIKAT 1</span>
+                <small>Ganti dengan foto asli</small>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">NAMA SERTIFIKAT</div>
+              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2024</span></div>
+              <span class="cert-cat security">SECURITY</span>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb" style="background:linear-gradient(135deg,#0a1a0d,#0d1b2e)">
+              <div class="cert-placeholder">
+                <i class="fas fa-linux"></i>
+                <span>SERTIFIKAT 2</span>
+                <small>Ganti dengan foto asli</small>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">NAMA SERTIFIKAT</div>
+              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2024</span></div>
+              <span class="cert-cat linux">LINUX</span>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb" style="background:linear-gradient(135deg,#1a1000,#1a0a00)">
+              <div class="cert-placeholder">
+                <i class="fas fa-network-wired"></i>
+                <span>SERTIFIKAT 3</span>
+                <small>Ganti dengan foto asli</small>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">NAMA SERTIFIKAT</div>
+              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2023</span></div>
+              <span class="cert-cat networking">NETWORKING</span>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb" style="background:linear-gradient(135deg,#0d1b2e,#0a0612)">
+              <div class="cert-placeholder">
+                <i class="fab fa-docker"></i>
+                <span>SERTIFIKAT 4</span>
+                <small>Ganti dengan foto asli</small>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">NAMA SERTIFIKAT</div>
+              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2025</span></div>
+              <span class="cert-cat devops">DEVOPS</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="add-cert-note">
+          <i class="fas fa-plus-circle"></i>
+          <span>Simpan foto sertifikat ke <code>assets/images/certs/cert1.jpg</code> → ganti div placeholder dengan <code>&lt;img src="assets/images/certs/cert1.jpg"/&gt;</code></span>
+        </div>
+      </div>
+
+      <!-- TAB: Videos -->
+      <div class="tab-content" id="tab-videos">
+        <div class="videos-grid">
+          <div class="vcard" onclick="openVideo('TGJ9-1LWFtE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TGJ9-1LWFtE/hqdefault.jpg" loading="lazy" alt="v1"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">01</div><div class="vcard-title">Playlist #1</div></div></div>
+          <div class="vcard" onclick="openVideo('7T4OEZcnOJE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/7T4OEZcnOJE/hqdefault.jpg" loading="lazy" alt="v2"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">02</div><div class="vcard-title">Playlist #2</div></div></div>
+          <div class="vcard" onclick="openVideo('l-wC90eBYxo')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/l-wC90eBYxo/hqdefault.jpg" loading="lazy" alt="v3"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">03</div><div class="vcard-title">Playlist #3</div></div></div>
+          <div class="vcard" onclick="openVideo('DWJh0Dny5Ug')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/DWJh0Dny5Ug/hqdefault.jpg" loading="lazy" alt="v4"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">04</div><div class="vcard-title">Playlist #4</div></div></div>
+          <div class="vcard" onclick="openVideo('V8fYAAh5uuA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/V8fYAAh5uuA/hqdefault.jpg" loading="lazy" alt="v5"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">05</div><div class="vcard-title">Playlist #5</div></div></div>
+          <div class="vcard" onclick="openVideo('TQZ9DzaO23Y')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TQZ9DzaO23Y/hqdefault.jpg" loading="lazy" alt="v6"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">06</div><div class="vcard-title">Playlist #6</div></div></div>
+          <div class="vcard" onclick="openVideo('JWR26Lfl3Uw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/JWR26Lfl3Uw/hqdefault.jpg" loading="lazy" alt="v7"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">07</div><div class="vcard-title">Playlist #7</div></div></div>
+          <div class="vcard" onclick="openVideo('ViFHruS6oO8')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/ViFHruS6oO8/hqdefault.jpg" loading="lazy" alt="v8"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">08</div><div class="vcard-title">Playlist #8</div></div></div>
+          <div class="vcard" onclick="openVideo('wjNln9mXuTI')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/wjNln9mXuTI/hqdefault.jpg" loading="lazy" alt="v9"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">09</div><div class="vcard-title">Playlist #9</div></div></div>
+          <div class="vcard" onclick="openVideo('Z9XoZSifPNA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/Z9XoZSifPNA/hqdefault.jpg" loading="lazy" alt="v10"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">10</div><div class="vcard-title">Playlist #10</div></div></div>
+          <div class="vcard" onclick="openVideo('AqI97zHMoQw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/AqI97zHMoQw/hqdefault.jpg" loading="lazy" alt="v11"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">11</div><div class="vcard-title">Playlist #11</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ████ PAGE 3 — CONTACT ████ -->
+  <div class="fp-page" id="page3">
+    <div class="fp-grid-bg"></div>
+    <!-- Gambar 4: Nakano Itsuki close up merah -->
+    <div class="page-bg-img" style="background-image:url('assets/images/bg-page3-contact.png');background-position:left center;"></div>
+
+    <div class="page-content contact-page">
+      <div class="sec-tag" style="text-align:center">// 04 CONTACT — 繋がろう</div>
+      <h2 class="sec-title" style="text-align:center;margin-bottom:8px">GET IN <span class="neon">TOUCH</span></h2>
+      <p class="contact-sub">Terbuka untuk kolaborasi, diskusi security, tool building, dan teman nonton anime 🌸</p>
+
+      <div class="contact-layout">
+        <div class="contact-cards">
+          <a href="mailto:firefly1368@gmail.com" class="cc">
+            <div class="cc-icon" style="--c:#ea4335"><i class="fas fa-envelope"></i></div>
+            <div class="cc-info"><span class="cc-lbl">EMAIL</span><span class="cc-val">firefly1368@gmail.com</span></div>
+            <i class="fas fa-external-link-alt cc-ext"></i>
+          </a>
+          <a href="https://github.com/firefly1368-code" target="_blank" rel="noopener" class="cc">
+            <div class="cc-icon" style="--c:#fff"><i class="fab fa-github"></i></div>
+            <div class="cc-info"><span class="cc-lbl">GITHUB</span><span class="cc-val">firefly1368-code</span></div>
+            <i class="fas fa-external-link-alt cc-ext"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/riski-akbar-a7b20a363" target="_blank" rel="noopener" class="cc">
+            <div class="cc-icon" style="--c:#0077b5"><i class="fab fa-linkedin"></i></div>
+            <div class="cc-info"><span class="cc-lbl">LINKEDIN</span><span class="cc-val">Riski Akbar</span></div>
+            <i class="fas fa-external-link-alt cc-ext"></i>
+          </a>
+          <a href="https://www.instagram.com/saotome_risu/" target="_blank" rel="noopener" class="cc">
+            <div class="cc-icon" style="--c:#e4405f"><i class="fab fa-instagram"></i></div>
+            <div class="cc-info"><span class="cc-lbl">INSTAGRAM</span><span class="cc-val">@saotome_risu</span></div>
+            <i class="fas fa-external-link-alt cc-ext"></i>
+          </a>
+        </div>
+
+        <div class="contact-form-box">
+          <div class="cfb-header"><i class="fas fa-terminal"></i> SEND MESSAGE — メッセージ</div>
+          <div class="form-row">
+            <div class="fg"><label>NAME</label><input type="text" id="cfName" placeholder="Your name" maxlength="100" autocomplete="off"/></div>
+            <div class="fg"><label>EMAIL</label><input type="email" id="cfEmail" placeholder="your@email.com" maxlength="200" autocomplete="off"/></div>
+          </div>
+          <div class="fg"><label>SUBJECT</label><input type="text" id="cfSubject" placeholder="Kolaborasi, diskusi security, anime recs..." maxlength="200" autocomplete="off"/></div>
+          <div class="fg"><label>MESSAGE</label><textarea id="cfMsg" rows="4" placeholder="Your message..." maxlength="2000"></textarea></div>
+          <button class="cf-submit" onclick="sendContact()"><i class="fas fa-paper-plane"></i> TRANSMIT MESSAGE</button>
+          <div id="cfFeedback"></div>
+        </div>
+      </div>
+
+      <div class="contact-footer">
+        <div class="cf-logo"><span class="neon">&lt;</span>firefly.dev<span class="neon">/&gt;</span></div>
+        <div class="cf-copy">
+          「 星々の中を旅する — Traversing among the stars 」 🦋✨<br/>
+          <span style="font-size:.65rem;opacity:.5">© 2025 Muhammad Riski Akbar · Made with ❤️ + ☕ + 夜更かし</span>
+        </div>
+        <div class="cf-status"><span class="ns-dot"></span> ONLINE · <span id="footerTime"></span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.fp-wrapper -->
+
+<!-- MODALS -->
+<div id="videoModal" class="modal-bg" onclick="closeModal('videoModal')">
+  <div class="modal-box video-modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('videoModal')"><i class="fas fa-times"></i></button>
+    <div id="videoModalBody"></div>
+  </div>
+</div>
+<div id="certModal" class="modal-bg" onclick="closeModal('certModal')">
+  <div class="modal-box cert-modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('certModal')"><i class="fas fa-times"></i></button>
+    <div id="certModalContent"></div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
