@@ -84,7 +84,7 @@
     </div>
     <div class="mp-info">
       <div class="mp-title" id="mpTitle">Loading...</div>
-      <div class="mp-sub" id="mpSub">firefly playlist · <span id="mpNum">1/11</span></div>
+      <div class="mp-sub" id="mpSub">firefly playlist · <span id="mpNum">1/13</span></div>
     </div>
     <div class="mp-ctrl">
       <button onclick="mpPrev()"><i class="fas fa-backward"></i></button>
@@ -329,93 +329,102 @@
 
       <!-- TAB: Certificates -->
       <div class="tab-content" id="tab-certs">
-        <div class="certs-info-bar">
-          <i class="fas fa-info-circle"></i>
-          Tambah foto sertifikat: simpan ke <code>assets/images/certs/</code> lalu ganti <code>&lt;div class="cert-placeholder"&gt;</code> dengan <code>&lt;img src="..."&gt;</code>
-        </div>
         <div class="certs-grid">
 
+          <!-- CERT 1: Red Hat System Administration II -->
           <div class="cert-card" onclick="openCert(this)">
-            <div class="cert-thumb" style="background:linear-gradient(135deg,#0d1b2e,#1a0a2e)">
-              <div class="cert-placeholder">
-                <i class="fas fa-shield-alt"></i>
-                <span>SERTIFIKAT 1</span>
-                <small>Ganti dengan foto asli</small>
-              </div>
+            <div class="cert-thumb">
+              <img src="assets/images/certs/cert-redhat.jpg" alt="Red Hat Certificate"/>
             </div>
             <div class="cert-info">
-              <div class="cert-title">NAMA SERTIFIKAT</div>
-              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2024</span></div>
-              <span class="cert-cat security">SECURITY</span>
-            </div>
-          </div>
-
-          <div class="cert-card" onclick="openCert(this)">
-            <div class="cert-thumb" style="background:linear-gradient(135deg,#0a1a0d,#0d1b2e)">
-              <div class="cert-placeholder">
-                <i class="fas fa-linux"></i>
-                <span>SERTIFIKAT 2</span>
-                <small>Ganti dengan foto asli</small>
+              <div class="cert-title">RED HAT SYSTEM ADMIN II</div>
+              <div class="cert-meta">
+                <span class="cert-org"><i class="fas fa-certificate" style="color:#ee0000"></i> Red Hat · RH134 RHA v8.2</span>
+                <span class="cert-year">2026</span>
               </div>
-            </div>
-            <div class="cert-info">
-              <div class="cert-title">NAMA SERTIFIKAT</div>
-              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2024</span></div>
               <span class="cert-cat linux">LINUX</span>
             </div>
           </div>
 
+          <!-- CERT 2: Web Exploitation CTF -->
           <div class="cert-card" onclick="openCert(this)">
-            <div class="cert-thumb" style="background:linear-gradient(135deg,#1a1000,#1a0a00)">
-              <div class="cert-placeholder">
-                <i class="fas fa-network-wired"></i>
-                <span>SERTIFIKAT 3</span>
-                <small>Ganti dengan foto asli</small>
-              </div>
+            <div class="cert-thumb">
+              <img src="assets/images/certs/cert-web-exploitation-ctf.jpg" alt="CTF Certificate"/>
             </div>
             <div class="cert-info">
-              <div class="cert-title">NAMA SERTIFIKAT</div>
-              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2023</span></div>
-              <span class="cert-cat networking">NETWORKING</span>
+              <div class="cert-title">WEB EXPLOITATION CTF</div>
+              <div class="cert-meta">
+                <span class="cert-org"><i class="fas fa-flag" style="color:#a855f7"></i> Revolusiber · Think, Attack, Capture</span>
+                <span class="cert-year">2025</span>
+              </div>
+              <span class="cert-cat security">SECURITY</span>
             </div>
           </div>
 
+          <!-- CERT 3: Active Directory Attack -->
           <div class="cert-card" onclick="openCert(this)">
-            <div class="cert-thumb" style="background:linear-gradient(135deg,#0d1b2e,#0a0612)">
-              <div class="cert-placeholder">
-                <i class="fab fa-docker"></i>
-                <span>SERTIFIKAT 4</span>
-                <small>Ganti dengan foto asli</small>
-              </div>
+            <div class="cert-thumb">
+              <img src="assets/images/certs/cert-active-directory.jpg" alt="Active Directory Certificate"/>
             </div>
             <div class="cert-info">
-              <div class="cert-title">NAMA SERTIFIKAT</div>
-              <div class="cert-meta"><span class="cert-org">Issuer / Lembaga</span><span class="cert-year">2025</span></div>
-              <span class="cert-cat devops">DEVOPS</span>
+              <div class="cert-title">WINDOWS EXPLOITATION — AD ATTACK</div>
+              <div class="cert-meta">
+                <span class="cert-org"><i class="fab fa-windows" style="color:#ee0000"></i> Merdeka Siber · MS-WBRB110</span>
+                <span class="cert-year">2025</span>
+              </div>
+              <span class="cert-cat security">SECURITY</span>
             </div>
           </div>
 
-        </div>
-        <div class="add-cert-note">
-          <i class="fas fa-plus-circle"></i>
-          <span>Simpan foto sertifikat ke <code>assets/images/certs/cert1.jpg</code> → ganti div placeholder dengan <code>&lt;img src="assets/images/certs/cert1.jpg"/&gt;</code></span>
+          <!-- CERT 4: Reverse Engineering Linux Binary -->
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb">
+              <img src="assets/images/certs/cert-reverse-engineering.jpg" alt="Reverse Engineering Certificate"/>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">REVERSE ENGINEERING LINUX BINARY</div>
+              <div class="cert-meta">
+                <span class="cert-org"><i class="fas fa-terminal" style="color:#ee0000"></i> Merdeka Siber · MS-WBRB108</span>
+                <span class="cert-year">2025</span>
+              </div>
+              <span class="cert-cat linux">LINUX</span>
+            </div>
+          </div>
+
+          <!-- CERT 5: Introduction to Information Security -->
+          <div class="cert-card" onclick="openCert(this)">
+            <div class="cert-thumb">
+              <img src="assets/images/certs/cert-infosec.jpg" alt="InfoSec Certificate"/>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">INTRO TO INFORMATION SECURITY</div>
+              <div class="cert-meta">
+                <span class="cert-org"><i class="fas fa-shield-alt" style="color:#3b82f6"></i> Cyber Academy Indonesia</span>
+                <span class="cert-year">2025</span>
+              </div>
+              <span class="cert-cat security">SECURITY</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
       <!-- TAB: Videos -->
       <div class="tab-content" id="tab-videos">
         <div class="videos-grid">
-          <div class="vcard" onclick="openVideo('TGJ9-1LWFtE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TGJ9-1LWFtE/hqdefault.jpg" loading="lazy" alt="v1"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">01</div><div class="vcard-title">Playlist #1</div></div></div>
-          <div class="vcard" onclick="openVideo('7T4OEZcnOJE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/7T4OEZcnOJE/hqdefault.jpg" loading="lazy" alt="v2"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">02</div><div class="vcard-title">Playlist #2</div></div></div>
-          <div class="vcard" onclick="openVideo('l-wC90eBYxo')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/l-wC90eBYxo/hqdefault.jpg" loading="lazy" alt="v3"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">03</div><div class="vcard-title">Playlist #3</div></div></div>
-          <div class="vcard" onclick="openVideo('DWJh0Dny5Ug')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/DWJh0Dny5Ug/hqdefault.jpg" loading="lazy" alt="v4"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">04</div><div class="vcard-title">Playlist #4</div></div></div>
-          <div class="vcard" onclick="openVideo('V8fYAAh5uuA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/V8fYAAh5uuA/hqdefault.jpg" loading="lazy" alt="v5"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">05</div><div class="vcard-title">Playlist #5</div></div></div>
-          <div class="vcard" onclick="openVideo('TQZ9DzaO23Y')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TQZ9DzaO23Y/hqdefault.jpg" loading="lazy" alt="v6"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">06</div><div class="vcard-title">Playlist #6</div></div></div>
-          <div class="vcard" onclick="openVideo('JWR26Lfl3Uw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/JWR26Lfl3Uw/hqdefault.jpg" loading="lazy" alt="v7"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">07</div><div class="vcard-title">Playlist #7</div></div></div>
-          <div class="vcard" onclick="openVideo('ViFHruS6oO8')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/ViFHruS6oO8/hqdefault.jpg" loading="lazy" alt="v8"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">08</div><div class="vcard-title">Playlist #8</div></div></div>
-          <div class="vcard" onclick="openVideo('wjNln9mXuTI')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/wjNln9mXuTI/hqdefault.jpg" loading="lazy" alt="v9"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">09</div><div class="vcard-title">Playlist #9</div></div></div>
-          <div class="vcard" onclick="openVideo('Z9XoZSifPNA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/Z9XoZSifPNA/hqdefault.jpg" loading="lazy" alt="v10"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">10</div><div class="vcard-title">Playlist #10</div></div></div>
-          <div class="vcard" onclick="openVideo('AqI97zHMoQw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/AqI97zHMoQw/hqdefault.jpg" loading="lazy" alt="v11"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">11</div><div class="vcard-title">Playlist #11</div></div></div>
+          <div class="vcard" onclick="openVideo('vJ-DapY3piY')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/vJ-DapY3piY/hqdefault.jpg" loading="lazy" alt="main"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num" style="color:#ffd700">★</div><div class="vcard-title">Main Song 🎵</div></div></div>
+          <div class="vcard" onclick="openVideo('gUPGLYYT4bc')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/gUPGLYYT4bc/hqdefault.jpg" loading="lazy" alt="extra"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num" style="color:#c77dff">✦</div><div class="vcard-title">Bonus Track 🎵</div></div></div>
+          <div class="vcard" onclick="openVideo('TGJ9-1LWFtE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TGJ9-1LWFtE/hqdefault.jpg" loading="lazy" alt="v1"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">03</div><div class="vcard-title">Playlist #3</div></div></div>
+          <div class="vcard" onclick="openVideo('7T4OEZcnOJE')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/7T4OEZcnOJE/hqdefault.jpg" loading="lazy" alt="v2"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">04</div><div class="vcard-title">Playlist #4</div></div></div>
+          <div class="vcard" onclick="openVideo('l-wC90eBYxo')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/l-wC90eBYxo/hqdefault.jpg" loading="lazy" alt="v3"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">05</div><div class="vcard-title">Playlist #5</div></div></div>
+          <div class="vcard" onclick="openVideo('DWJh0Dny5Ug')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/DWJh0Dny5Ug/hqdefault.jpg" loading="lazy" alt="v4"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">06</div><div class="vcard-title">Playlist #6</div></div></div>
+          <div class="vcard" onclick="openVideo('V8fYAAh5uuA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/V8fYAAh5uuA/hqdefault.jpg" loading="lazy" alt="v5"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">07</div><div class="vcard-title">Playlist #7</div></div></div>
+          <div class="vcard" onclick="openVideo('TQZ9DzaO23Y')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/TQZ9DzaO23Y/hqdefault.jpg" loading="lazy" alt="v6"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">08</div><div class="vcard-title">Playlist #8</div></div></div>
+          <div class="vcard" onclick="openVideo('JWR26Lfl3Uw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/JWR26Lfl3Uw/hqdefault.jpg" loading="lazy" alt="v7"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">09</div><div class="vcard-title">Playlist #9</div></div></div>
+          <div class="vcard" onclick="openVideo('ViFHruS6oO8')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/ViFHruS6oO8/hqdefault.jpg" loading="lazy" alt="v8"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">10</div><div class="vcard-title">Playlist #10</div></div></div>
+          <div class="vcard" onclick="openVideo('wjNln9mXuTI')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/wjNln9mXuTI/hqdefault.jpg" loading="lazy" alt="v9"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">11</div><div class="vcard-title">Playlist #11</div></div></div>
+          <div class="vcard" onclick="openVideo('Z9XoZSifPNA')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/Z9XoZSifPNA/hqdefault.jpg" loading="lazy" alt="v10"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">12</div><div class="vcard-title">Playlist #12</div></div></div>
+          <div class="vcard" onclick="openVideo('AqI97zHMoQw')"><div class="vcard-thumb"><img src="https://img.youtube.com/vi/AqI97zHMoQw/hqdefault.jpg" loading="lazy" alt="v11"/><div class="vcard-play"><i class="fas fa-play"></i></div></div><div class="vcard-info"><div class="vcard-num">13</div><div class="vcard-title">Playlist #13</div></div></div>
         </div>
       </div>
     </div>

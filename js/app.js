@@ -70,12 +70,25 @@ function enterSystem() {
    "ENTER SYSTEM" — no tab baru!
 ═══════════════════════════════════ */
 const PLAYLIST = [
-  "TGJ9-1LWFtE","7T4OEZcnOJE","l-wC90eBYxo","DWJh0Dny5Ug",
-  "V8fYAAh5uuA","TQZ9DzaO23Y","JWR26Lfl3Uw","ViFHruS6oO8",
-  "wjNln9mXuTI","Z9XoZSifPNA","AqI97zHMoQw"
+  // ── Lagu Utama ──────────────────────────
+  "vJ-DapY3piY",   // 01 ← LAGU UTAMA (main song)
+  "gUPGLYYT4bc",   // 02 ← tambahan baru
+  // ── Playlist lama (dipilih yang bisa putar) ──
+  "TGJ9-1LWFtE",   // 03
+  "7T4OEZcnOJE",   // 04
+  "l-wC90eBYxo",   // 05
+  "DWJh0Dny5Ug",   // 06
+  "V8fYAAh5uuA",   // 07
+  "TQZ9DzaO23Y",   // 08
+  "JWR26Lfl3Uw",   // 09
+  "ViFHruS6oO8",   // 10
+  "wjNln9mXuTI",   // 11
+  "Z9XoZSifPNA",   // 12
+  "AqI97zHMoQw",   // 13
 ];
 let ytPlayer = null, ytReady = false;
 let curTrack = 0, playing = false;
+let skipTimer = null;
 
 window.onYouTubeIframeAPIReady = function() {
   ytReady = true;
@@ -99,6 +112,15 @@ window.onYouTubeIframeAPIReady = function() {
           document.getElementById('mpViz')?.classList.remove('active');
         }
         if (e.data === YT.PlayerState.ENDED) mpNext();
+        // Auto-skip jika video tidak bisa diputar (blocked/unavailable)
+        if (e.data === YT.PlayerState.UNSTARTED) {
+          skipTimer = setTimeout(() => {
+            if (!playing) mpNext();
+          }, 3000);
+        }
+        if (e.data === YT.PlayerState.PLAYING && skipTimer) {
+          clearTimeout(skipTimer); skipTimer = null;
+        }
       }
     }
   });
@@ -311,27 +333,36 @@ function openVideo(ytId){
 }
 
 function openCert(card){
-  const img=card.querySelector('.cert-thumb img');
-  const title=card.querySelector('.cert-title')?.textContent||'';
-  const org=card.querySelector('.cert-org')?.textContent||'';
-  const year=card.querySelector('.cert-year')?.textContent||'';
-  const c=document.getElementById('certModalContent');
-  if(!c) return;
-  c.innerHTML=img
-    ?`<img src="${escH(img.src)}" alt="${escH(title)}" />
-      <div class="cmc-info"><div class="cmc-title">${escH(title)}</div><div class="cmc-meta">${escH(org)} · ${escH(year)}</div></div>`
-    :`<div style="padding:48px;text-align:center">
+  const img   = card.querySelector('.cert-thumb img');
+  const title = card.querySelector('.cert-title')?.textContent || '';
+  const org   = card.querySelector('.cert-org')?.textContent   || '';
+  const year  = card.querySelector('.cert-year')?.textContent  || '';
+  const cat   = card.querySelector('.cert-cat')?.textContent   || '';
+  const c = document.getElementById('certModalContent');
+  if (!c) return;
+
+  if (img && img.src) {
+    c.innerHTML = `
+      <img src="${escH(img.src)}" alt="${escH(title)}" />
+      <div class="cmc-info">
+        <div class="cmc-title">${escH(title)}</div>
+        <div class="cmc-meta" style="margin-top:6px">
+          ${escH(org)} &nbsp;·&nbsp; ${escH(year)}
+          &nbsp;&nbsp;<span style="color:var(--neon2);letter-spacing:1px;font-size:.65rem">[${escH(cat)}]</span>
+        </div>
+      </div>
+    `;
+  } else {
+    c.innerHTML = `
+      <div style="padding:48px;text-align:center">
         <i class="fas fa-image" style="font-size:4rem;color:var(--dim);opacity:.3;display:block;margin-bottom:16px"></i>
         <div class="cmc-title">${escH(title)}</div>
         <div class="cmc-meta" style="margin-top:8px">${escH(org)} · ${escH(year)}</div>
-        <p style="margin-top:20px;font-family:var(--mono);font-size:.75rem;color:var(--muted);line-height:1.7">
-          Tambahkan foto sertifikat asli:<br>
-          1. Simpan ke <code style="color:var(--neon)">assets/images/certs/cert1.jpg</code><br>
-          2. Ganti div placeholder dengan <code style="color:var(--neon)">&lt;img src="..."/&gt;</code>
-        </p>
-      </div>`;
-  document.getElementById('certModal').style.display='flex';
-  document.body.style.overflow='hidden';
+      </div>
+    `;
+  }
+  document.getElementById('certModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal(id){
